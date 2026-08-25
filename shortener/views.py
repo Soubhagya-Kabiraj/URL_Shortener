@@ -8,7 +8,8 @@ def generate_short_code(length=6):
     return ''.join(random.choices(characters, k=length))
 
 def home(request):
-    return render(request, 'shortener/home.html')
+    urls = shortURL.objects.all().order_by('-created_at')
+    return render(request, 'shortener/home.html', {'urls':urls})
 
 def shorten_url(request):
     if request.method == 'POST':
@@ -20,13 +21,21 @@ def shorten_url(request):
 
         short_url = shortURL.objects.create(original_url=original_url, short_code=short_code)
 
-        return render(request, 'shortener/home.html',{'short_url': request.build_absolute_uri(f'/{short_url.short_code}/')})
+        return redirect('home')
 
     return redirect('home')
 
 def redirect_url(request, short_code):
     short_url = get_object_or_404(shortURL,short_code=short_code)
+
     short_url.click_count += 1
-    short_url.save()
+    short_url.save(update_fields=['click_count'])
 
     return redirect(short_url.original_url)
+
+def delete_url(request, url_id):
+    if request.method == 'POST':
+        url = get_object_or_404(shortURL, id=url_id)
+        url.delete()
+
+    return redirect('home')
