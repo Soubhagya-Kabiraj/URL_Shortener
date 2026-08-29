@@ -1,0 +1,82 @@
+<!-- UPDATED CODE: SnapURL Dashboard UI -->
+{% extends 'shortener/base.html' %}
+
+{% block title %}Dashboard - SnapURL{% endblock %}
+
+{% block content %}
+<div class="dashboard-wrapper">
+    <div class="dashboard-header">
+        <h1>Welcome to SnapURL</h1>
+        <p class="subtitle">Manage your short URLs, view analytics, and monitor search history in one clean space.</p>
+    </div>
+
+    <div class="dashboard-grid">
+        <!-- Card 1: Search URL (Clickable) -->
+        <a href="{% url 'home' %}" class="dashboard-card clickable-card">
+            <div class="card-icon">🔍</div>
+            <div class="card-content">
+                <h3>Search URL</h3>
+                <p class="card-action">Shorten a URL &rarr;</p>
+            </div>
+        </a>
+
+        <!-- Card 2: Total URLs (Non-clickable) -->
+        <div class="dashboard-card">
+            <div class="card-icon">🔗</div>
+            <div class="card-content">
+                <h3>Total URLs</h3>
+                <p class="card-value">{{ total_urls }}</p>
+            </div>
+        </div>
+
+        <!-- Card 3: Search History (Clickable) -->
+        <a href="{% url 'history' %}" class="dashboard-card clickable-card">
+            <div class="card-icon">🕘</div>
+            <div class="card-content">
+                <h3>Search History</h3>
+                <p class="card-value">{{ total_history }}</p>
+            </div>
+        </a>
+    </div>
+
+    <div class="activity-section">
+        <h2>Last 5 Search Activities</h2>
+        <div class="activity-card">
+            <div class="table-responsive">
+                <table class="activity-table">
+                    <thead>
+                        <tr>
+                            <th>URL</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if recent_activities %}
+                            {% for activity in recent_activities %}
+                            <tr>
+                                <td class="url-cell" title="{{ activity.original_url }}">
+                                    {{ activity.original_url }}
+                                </td>
+                                <td>
+                                    {{ activity.created_at|date:"M d, Y" }}
+                                </td>
+                                <td>
+                                    <span class="status-badge completed">Completed</span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="3" class="empty-state">
+                                    No recent URL shortening activities found. <a href="{% url 'home' %}">Create one now</a>.
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
