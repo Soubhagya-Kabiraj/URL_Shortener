@@ -1,6 +1,6 @@
 # 🔗 SnapURL — URL Shortener
 
-A simple and secure **URL Shortener web application** built with Django. LinkForge converts long URLs into short, easy-to-share links and tracks the number of clicks.
+A simple and secure **URL Shortener web application** built with Django, SQLite3. SnapURL converts long URLs into short, easy-to-share links and tracks the number of clicks.
 
 ---
 
