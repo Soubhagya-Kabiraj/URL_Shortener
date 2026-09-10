@@ -27,6 +27,22 @@ A simple and secure **URL Shortener web application** built with Django, SQLite3
 
 ---
 
+## 🖼️ User Interface Showcase
+
+| **Dashboard View** |
+| :---: |
+| <img src="https://github.com/user-attachments/assets/9f8fbdc8-6126-417b-a8d1-263795191559" alt="Dashboard View" width="100%" /> |
+| *Real-time analytics, URL performance tracking, and system metrics overview.* |
+
+<br>
+
+| **URL Shortener** | **Link History** |
+| :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/e85d2fdd-1e9d-4f79-b80e-ea3a0212a3c5" alt="URL Shorten Screen" width="100%" /> | <img src="https://github.com/user-attachments/assets/ad78e678-1daf-4add-8f03-eacdbe8d11e2" alt="History Screen" width="100%" /> |
+| *Intuitive shortlink generation with custom alias support.* | *Detailed log of created links, click counts, and management controls.* |
+
+---
+
 ## 🎯 Future Improvements
 
 * Custom short aliases
