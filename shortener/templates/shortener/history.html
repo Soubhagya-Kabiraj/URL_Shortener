@@ -10,9 +10,6 @@
             <h1>Search History</h1>
             <p class="subtitle">View and manage all your shortened URL records.</p>
         </div>
-        <div class="header-right">
-            <a href="{% url 'home' %}" class="btn btn-primary">Shorten New URL</a>
-        </div>
     </div>
 
     <div class="activity-card">
@@ -29,36 +26,38 @@
                 </thead>
                 <tbody>
                     {% if urls %}
-                        {% for url in urls %}
-                        <tr>
-                            <td class="url-cell" title="{{ url.original_url }}">
-                                {{ url.original_url }}
-                            </td>
-                            <td>
-                                <a href="/{{ url.short_code }}/" target="_blank" class="short-link">
-                                    {{ request.get_host }}/{{ url.short_code }}/
-                                </a>
-                            </td>
-                            <td class="text-center font-bold">
-                                {{ url.click_count }}
-                            </td>
-                            <td>
-                                {{ url.created_at|date:"M d, Y, h:i A" }}
-                            </td>
-                            <td class="text-right">
-                                <form method="POST" action="{% url 'delete_url' url.id %}" onsubmit="return confirm('Are you sure you want to delete this shortened URL?');" style="display: inline;">
-                                    {% csrf_token %}
-                                    <button type="submit" class="btn-delete">Delete</button>
-                                </form>
-                            </td>
-                        </tr>
-                        {% endfor %}
+                    {% for url in urls %}
+                    <tr>
+                        <td class="url-cell" title="{{ url.original_url }}">
+                            {{ url.original_url }}
+                        </td>
+                        <td>
+                            <a href="/{{ url.short_code }}/" target="_blank" class="short-link">
+                                {{ request.get_host }}/{{ url.short_code }}/
+                            </a>
+                        </td>
+                        <td class="text-center font-bold">
+                            {{ url.click_count }}
+                        </td>
+                        <td>
+                            {{ url.created_at|date:"M d, Y, h:i A" }}
+                        </td>
+                        <td class="text-right">
+                            <form method="POST" action="{% url 'delete_url' url.id %}"
+                                onsubmit="return confirm('Are you sure you want to delete this shortened URL?');"
+                                style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-delete">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
                     {% else %}
-                        <tr>
-                            <td colspan="5" class="empty-state">
-                                No shortened URLs in your history. <a href="{% url 'home' %}">Shorten a URL now</a>.
-                            </td>
-                        </tr>
+                    <tr>
+                        <td colspan="5" class="empty-state">
+                            No shortened URLs in your history. <a href="{% url 'home' %}">Shorten a URL now</a>.
+                        </td>
+                    </tr>
                     {% endif %}
                 </tbody>
             </table>

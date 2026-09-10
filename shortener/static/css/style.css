@@ -3,7 +3,7 @@
 body{
   margin:0;
   font-family:Inter,Arial,sans-serif;
-  background:#f4f6f8;
+  background:rgb(252, 252, 197);
   color:#1a202c
 }
 
@@ -54,13 +54,13 @@ button,.btn{
 button:hover,.btn:hover{opacity:.9}
 .btn-block{display:block;width:100%}
 
-.auth-container{display:flex;justify-content:center;padding:40px 0}
+/* .auth-container{display:flex;justify-content:center;padding:40px 0}
 .auth-card{width:100%;max-width:440px;padding:35px}
 .auth-title{text-align:center;font-size:24px}
 .auth-subtitle,.auth-footer,.info,.subtitle{color:#718096;font-size:14px}
 .auth-subtitle{text-align:center;margin-bottom:25px}
 .form-group{margin-bottom:18px}
-.auth-form label{display:block;margin-bottom:6px;font-size:14px}
+.auth-form label{display:block;margin-bottom:6px;font-size:14px} */
 
 .dashboard-header{margin-bottom:30px}
 .dashboard-header h1,.history-header h1{
